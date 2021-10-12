@@ -1,0 +1,2 @@
+export TERMINAL=$TERM
+
