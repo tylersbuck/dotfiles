@@ -1,0 +1,29 @@
+
+=== BLACKS ===
+1. #131313 - 19,19,19    <- bar border
+2. #191919 - 25,25,25    <- bar background
+3. #222222 - 34,34,34    <- editor background
+
+=== GRAYS ===
+1. #363537 - 54,53,55
+2. #525053 - 82,80,83
+3. #69676c - 105,103,108 <- comments, statusbar foreground, debugging statusbar background - 105,103,108
+4. #8b888f - 139,136,143 <- inactive titlebar foreground, punctuation - 139,136,143
+
+=== WHITES ===
+1. #f7f1ff - 247,241,255 <- editor foreground
+2. #bab6c0 - 186,182,192 <- titlebar foreground
+
+=== PRIMARIES ===
+#fd9353 - 253,147,83     <- blue(orange), warnings, modified, enum, event, field, key, typeparam
+#5ad4e6 - 90,212,230     <- cyan, info/links, class, interface, module, namespace, object, entity, var, macros, html attr name
+#7bd88f - 123,216,143    <- green, added, constructor, function/method, snippet
+#948ae3 - 148,138,227    <- magenta, hints, color, constant, null, number, package, reference, unit
+#fc618d - 252,97,141     <- red, errors, removed, array, boolean, keyword, operator, struct, html tags
+#fce566 - 252,229,102    <- yellow, matches, string, text
+
+=== OTHERS ===
+line numbers = fg: gray2, activefg: white2
+selected bg: #bab6c026, white2 with transparency to lighten bg color
+css = class: green, ID: blue, psuedoclass: cyan
+json = keys: white1, values: yellow

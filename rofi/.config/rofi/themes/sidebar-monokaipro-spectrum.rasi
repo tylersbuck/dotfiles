@@ -1,0 +1,346 @@
+/* ==========================================================================
+   Rofi sidebar theme with Monokai Pro Spectrum colors
+   ========================================================================== */
+
+/**
+ * See the rofi-theme(5) manpage for details.
+ */
+
+/* Configuration
+   ========================================================================== */
+
+configuration {
+    display-drun: "Run";
+    display-run: "Exec";
+    display-window: "Window";
+    show-icons: true;
+    sidebar-mode: true;
+}
+
+/* Base element styles & variables
+   ========================================================================== */
+
+* {
+    // Color definitions
+
+    black-0:    #000000;
+    black-1:    #131313;
+    black-2:    #191919;
+
+    gray-0:     #222222;
+    gray-1:     #363537;
+    gray-2:     #525053;
+    gray-3:     #69676c;
+
+    white-0:    #f7f1ff;
+    white-1:    #bab6c0;
+    white-2:    #8b888f;
+
+    red:        #fc618d;
+    orange:     #fd9353;
+    yellow:     #fce566;
+    green:      #7bd88f;
+    cyan:       #5ad4e6;
+    magenta:    #948ae3;
+
+    // List view items
+
+    normal-foreground:              @white-1;
+    normal-background:              @black-2;
+
+    alternate-foreground:           @normal-foreground;
+    alternate-background:           @black-1;
+
+    active-foreground:              @normal-foreground;
+    active-background:              @normal-background;
+
+    urgent-foreground:              @black-1;
+    urgent-background:              @red;
+
+    selected-normal-foreground:     @yellow;
+    selected-normal-background:     @gray-0;
+
+    selected-active-foreground:     @selected-normal-foreground;
+    selected-active-background:     @selected-normal-background;
+
+    selected-urgent-foreground:     @white-0;
+    selected-urgent-background:     @urgent-background;
+
+    // Fonts
+
+    font:       "Jetbrains Mono Medium 12";
+    smallfont:  "Jetbrains Mono Medium 10";
+}
+
+/* Window
+   ========================================================================== */
+
+/**
+ * 1. Leave room for top status bar.
+ */
+window {
+    anchor: southwest;
+    children: [ mainbox ];
+    height: calc(100% - 42px); /* 1 */
+    location: southwest;
+    width: 22%;
+}
+
+/* Main box
+   ========================================================================== */
+
+/**
+ * mainbox {BOX:vertial}
+ */
+mainbox {
+    background-color: @gray-1;
+    border: 0 1px solid 1px solid 1px solid;
+    border-color: @black-1;
+    children: [ inputbar, message, listview, mode-switcher ];
+    padding: 6px;
+    spacing: 0;
+}
+
+/* Input bar
+   ========================================================================== */
+
+/**
+ * inputbar {BOX:horizontal}
+ */
+inputbar {
+    background-color: @black-2;
+    border: 1px solid;
+    border-color: @black-1;
+    children: [ 
+        prompt, textbox-prompt-colon, entry, case-indicator, 
+        num-filtered-rows, textbox-delim, num-rows 
+    ];
+    spacing: 0;
+    text-color: @white-0;
+}
+
+/**
+ * Input textbox
+ */
+entry {
+    background-color: inherit;
+    blink: true;
+    border-color: @black-1;
+    expand: true;
+    padding: 3px 6px;
+    placeholder: "...";
+    placeholder-color: @gray-1;
+    text-color: inherit;
+    vertical-align: 0.5;
+}
+
+/**
+ * Mode prompt
+ */
+prompt {
+    background-color: @black-1;
+    horizontal-align: 0.5;
+    padding: 10px 9px;
+    text-color: @green;
+    vertical-align: 0.5;
+}
+
+/**
+ * Prompt symbol
+ */
+textbox-prompt-colon {
+    background-color: inherit;
+    expand: false;
+    padding: 0 6px 0;
+    str: "$";
+    text-color: @cyan;
+    vertical-align: 0.5;
+}
+
+/**
+ * Case mode indicator
+ */
+case-indicator {
+    background-color: inherit;
+    padding: 0 6px 0;
+    text-color: @magenta;
+    vertical-align: 0.5;
+}
+
+/**
+ * Number of results
+ */
+num-rows,
+num-filtered-rows,
+textbox-delim {
+    background-color: @black-1;
+    expand: false;
+    font: @smallfont;
+    text-color: @gray-1;
+    vertical-align: 0.5;
+}
+
+num-rows {
+    padding: 0 8px 0 1px;
+}
+
+num-filtered-rows {
+    padding: 0 1px 0 8px;
+    text-color: @gray-2;
+}
+
+textbox-delim {
+    str: "/";
+}
+
+/* Message
+   ========================================================================== */
+
+message {
+    background-color: @black-1;
+    horizontal-align: 0.5;
+    margin: 5px 0 0;
+    text-color: @gray-2;
+}
+
+textbox {
+    background-color: inherit;
+    horizontal-align: inherit;
+    font: @smallfont;
+    padding: 5px;
+    text-color: inherit;
+    vertical-align: 0.5;
+}
+
+/* List view
+   ========================================================================== */
+
+listview {
+    background-color: @black-1;
+    border: 1px solid;
+    border-color: @black-1;
+    cycle: true;
+    dynamic: false;
+    margin: 5px 0;
+    scrollbar: true;
+    spacing: 0;
+} 
+
+scrollbar {
+    background-color: transparent;
+    handle-color: @gray-2;
+    handle-width: 2px;
+    padding: 0;
+    margin: 1px 1px 1px 2px;
+}
+
+element { 
+    padding: 11px; 
+}
+
+element-icon {
+    background-color: inherit;
+    padding: 4px 16px 0 2px;
+    size: 0.7em;
+    text-color: inherit;
+    text-align: center;
+}
+
+element-index {
+}
+
+element-text {
+    background-color: inherit;
+    text-color: inherit;
+}
+
+element.normal.normal {
+    background-color: @normal-background;
+    text-color: @normal-foreground;
+}
+
+element.normal.urgent {
+    background-color: @urgent-background;
+    text-color: @urgent-foreground;
+}
+
+element.normal.active {
+    background-color: @active-background;
+    text-color: @active-foreground;
+}
+
+element.alternate.normal {
+    background-color: @alternate-background;
+    text-color: @alternate-foreground;
+}
+
+element.alternate.urgent {
+    background-color: @urgent-background;
+    text-color: @urgent-foreground;
+}
+
+element.alternate.active {
+    background-color: @alternate-background;
+    text-color: @alternate-foreground;
+}
+
+element.selected.normal {
+    background-color: @selected-normal-background;
+    text-color: @selected-normal-foreground;
+}
+
+element.selected.urgent {
+    background-color: @selected-urgent-background;
+    text-color: @selected-urgent-foreground;
+}
+
+element.selected.active {
+    background-color: @selected-active-background;
+    text-color: @selected-active-foreground;
+}
+
+/* Mode switcher
+   ========================================================================== */
+
+/**
+ * mode-switcher {BOX:horizontal}
+ *
+ * 1. Use a combination of padding and spacing to create borders.
+ */
+mode-switcher {
+    background-color: @black-1;
+    padding: 1px; /* 1 */
+    spacing: 1px; /* 1 */
+}
+
+/**
+ * Sidebar mode button
+ */
+button { 
+    background-color: @gray-0;
+    font: @smallfont;
+    text-color: @white-1;
+    padding: 8px 4px; 
+}
+
+button.selected {
+    background-color: @black-1;
+    text-color: @yellow;
+}
+
+/* Error message
+   ========================================================================== */
+
+/**
+ * error-message {BOX:vertical}
+ */
+error-message {
+    background-color: @urgent-background;
+    border: 0 1px solid 1px solid 1px solid;
+    border-color: @black-1;
+    children: [ textbox ];
+    padding: 5px;
+    spacing:  0;
+    text-color: @urgent-foreground;
+}
+

@@ -1,0 +1,40 @@
+#!/bin/bash
+
+# You can call this script like this:
+# $./volume up
+# $./volume down
+# $./volume toggle - TODO
+
+# TODO: Is there a simpler way to get current volume level?
+SINK=$( pactl list short sinks | sed -e 's,^\([0-9][0-9]*\)[^0-9].*,\1,' | head -n 1 )
+CURRENT=$( pactl list sinks | grep '^[[:space:]]Volume:' | head -n $(( $SINK + 1 )) | tail -n 1 | sed -e 's,.* \([0-9][0-9]*\)%.*,\1,' )
+
+NEXT=$CURRENT
+
+MAX=175
+MIN=0
+STEP=5
+
+case $1 in
+    up)
+	if [[ $CURRENT -ge $(expr $MAX - $STEP) ]]; then
+	    NEXT=$MAX
+        else
+	    NEXT=$(expr $CURRENT + $STEP)
+	fi
+	;;
+    down)
+	if [[ $CURRENT -le $(expr $MIN + $STEP) ]]; then
+	    NEXT=$MIN
+        else
+	    NEXT=$(expr $CURRENT - $STEP)
+	fi
+	;;
+esac
+
+# █
+
+dunstify -t 1000 -r 2594 -u normal "VOL $NEXT%"
+pactl set-sink-volume $SINK $NEXT%
+canberra-gtk-play -i audio-volume-change -d "changeVolume"
+

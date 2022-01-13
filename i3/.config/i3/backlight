@@ -1,0 +1,35 @@
+#!/bin/bash
+
+# You can call this script like this:
+# $./backlight up
+# $./backlight down
+
+CURRENT=$(xbacklight -get | xargs printf "%.*f\n" "0")
+NEXT=$CURRENT
+
+MAX=100
+MIN=10
+STEP=10
+
+case $1 in
+    up)
+	if [[ $CURRENT -ge $(expr $MAX - $STEP) ]]; then
+	    NEXT=$MAX
+        else
+	    NEXT=$(expr $CURRENT + $STEP)
+	fi
+	;;
+    down)
+	if [[ $CURRENT -le $(expr $MIN + $STEP) ]]; then
+	    NEXT=$MIN
+        else
+	    NEXT=$(expr $CURRENT - $STEP)
+	fi
+	;;
+esac
+
+# █
+
+dunstify -t 1000 -r 2594 -u normal "LIGHT $NEXT%"
+xbacklight -steps 1 -time 1 -set $NEXT > /dev/null
+

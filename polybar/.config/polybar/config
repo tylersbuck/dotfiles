@@ -1,0 +1,90 @@
+;==========================================================
+;
+;
+;   ██████╗  ██████╗ ██╗  ██╗   ██╗██████╗  █████╗ ██████╗
+;   ██╔══██╗██╔═══██╗██║  ╚██╗ ██╔╝██╔══██╗██╔══██╗██╔══██╗
+;   ██████╔╝██║   ██║██║   ╚████╔╝ ██████╔╝███████║██████╔╝
+;   ██╔═══╝ ██║   ██║██║    ╚██╔╝  ██╔══██╗██╔══██║██╔══██╗
+;   ██║     ╚██████╔╝███████╗██║   ██████╔╝██║  ██║██║  ██║
+;   ╚═╝      ╚═════╝ ╚══════╝╚═╝   ╚═════╝ ╚═╝  ╚═╝╚═╝  ╚═╝
+;
+;
+;   To learn more about how to configure Polybar
+;   go to https://github.com/polybar/polybar
+;
+;   The README contains a lot of information
+;
+;==========================================================
+
+;==========================================================
+; Common values
+;==========================================================
+
+[colors]
+include-file = /home/tbuck/.config/polybar/colors/base.ini
+[fonts]
+include-file = /home/tbuck/.config/polybar/fonts/base.ini
+
+;==========================================================
+; Module definitions
+;==========================================================
+
+[module/menubutton]
+include-file = /home/tbuck/.config/polybar/modules/menubutton.ini
+[module/powerbutton]
+include-file = /home/tbuck/.config/polybar/modules/powerbutton.ini
+[module/date]
+include-file = /home/tbuck/.config/polybar/modules/date.ini
+[module/network]
+include-file = /home/tbuck/.config/polybar/modules/network.ini
+[module/i3]
+include-file = /home/tbuck/.config/polybar/modules/i3workspaces.ini
+[module/backlight]
+include-file = /home/tbuck/.config/polybar/modules/backlight.ini
+[module/battery]
+include-file = /home/tbuck/.config/polybar/modules/battery.ini
+[module/pulseaudio]
+include-file = /home/tbuck/.config/polybar/modules/pulseaudio.ini
+
+;==========================================================
+; Bar definitions
+;==========================================================
+
+[bar/tbar]
+include-file = /home/tbuck/.config/polybar/bars/base.ini
+
+;monitor = ${env:MONITOR:HDMI-1}
+width = 100%
+height = 41
+;fixed-center = false
+bottom = false
+
+;line-size = 3
+;line-color = #5f676a
+
+border-bottom-size = 1
+
+padding-left = 4
+padding-right = 4
+
+module-margin-left = 1
+module-margin-right = 2
+
+modules-left = menubutton i3
+modules-right = date pulseaudio battery network powerbutton
+
+;tray-position = right
+;tray-padding = 2
+;tray-background = #0063ff
+
+;wm-restack = i3
+
+;override-redirect = true
+
+;scroll-up = i3wm-wsnext
+;scroll-down = i3wm-wsprev
+
+;cursor-click = pointer
+;cursor-scroll = ns-resize
+
+; vi:ft=dosini
