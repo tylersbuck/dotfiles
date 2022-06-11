@@ -3,3 +3,5 @@
 	name = Tyler Buck
 [core]
 	editor = nvim
+[pull]
+	ff = only
